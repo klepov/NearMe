@@ -1,23 +1,49 @@
 import vk_api
+from rest_framework import status
+from rest_framework.response import Response
 
-from core.models import User
+from core.models import User, Groups, Filter, Location
+
+HOURS = 259200  # 72часа
 
 
 def get_user(id):
-    user = None
     try:
         user = User.objects.get(vk_id=id)
     except User.DoesNotExist:
-        pass
+        user = None
+
     return user
 
 
 def get_vk_auth(vk_token):
     vk = vk_api.VkApi(token=vk_token)
-
     try:
         vk.authorization()
-    except vk_api.AuthorizationError as error_msg:
-        print(error_msg)
+        method = vk.get_api()
 
-    return vk
+    except vk_api.AuthorizationError:
+        return Response(status=status.HTTP_200_OK)
+
+    return method
+
+
+def get_user_vk_response(token):
+    auth = get_vk_auth(token)
+    response = auth.users.get(fields="sex")[0]
+    return response
+
+
+def update_in_db_vk(user):
+
+    latitude= user.location.latitude
+    longitude= user.location.longitude
+    timeout = HOURS
+    radius = 3
+
+    auth = get_vk_auth(user.vk_token)
+    auth.users.getNearby(latitude = latitude,
+                         longitude = longitude,
+                         timeout = timeout,
+                         radius =radius,
+                         fields = ("sex, photo_id"))

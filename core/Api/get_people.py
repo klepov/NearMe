@@ -1,10 +1,14 @@
+#coding: utf-8
+# -*- coding: utf-8 -*-
+
 import json
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from core.Api.Utils import get_user, get_vk_auth
+from core.Api import Utils
+from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response
 
 
 def setup_latlng_vk(lat,lng,token):
@@ -15,10 +19,9 @@ def setup_latlng_vk(lat,lng,token):
         'longitude':lng,
         'timeout':HOURS_3,
         'radius':4,
-        'fields':'photo_max, sex'
-
-
+        'fields':'photo_max, sex,bdate'
     }
+
     response = vk.method('users.getNearby',param)
 
     return response
@@ -30,25 +33,38 @@ def get_photo(token):
 
 class Near_people(APIView):
 
-    def get(self,request):
-        id = request.GET['id']
-        lat = request.GET['latitude']
-        lng = request.GET['longitude']
-        sex = int(request.GET['sex'])
-
-        user = get_user(id)
+    def post(self,request):
+        token = request.POST['token']
+        user = Utils.get_user(get_user_vk_response(token)['id'])
 
         if user == None:
             Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        filter = user.get_filter
+
+        # дефолтные настройки
+        age_from = 14
+        age_to = 25
+        sex = 1
+
+        if filter is not None:
+            age_from = filter.age_from
+            age_to= filter.age_to
+            sex = filter.sex_need
 
         response = setup_latlng_vk(lat = lat,lng = lng,token=user.vk_token)
 
         good_people = []
         for i in response['items']:
-            if i['sex'] == sex:
+            try:
+                age_response = 2016 - int(i['bdate'].split('.')[2])
+            except:
+                age_response = False
+            if i['sex'] == sex and  age_from < age_response <age_to:
                 good_people.append(i)
 
-        return Response(json.dumps(good_people))
+        return Response(good_people)
+        # return Response(json.dumps(good_people))
 
 
 
