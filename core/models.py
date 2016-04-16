@@ -46,6 +46,13 @@ class Location(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
 
+class Wish(models.Model):
+    wish = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.wish
+
+
 class User(models.Model):
     vk_token = models.CharField(max_length=255)
     vk_id = models.IntegerField()
@@ -56,6 +63,7 @@ class User(models.Model):
     groups = models.OneToOneField(Groups)
     filter = models.OneToOneField(Filter)
     location = models.OneToOneField(Location)
+    wish = models.OneToOneField(Wish)
 
     black_list = models.TextField(blank=True)
 
@@ -75,6 +83,10 @@ class User(models.Model):
     @property
     def get_name(self):
         return self.name + " " + self.second_name
+
+    @property
+    def get_wish(self):
+        return self.wish
 
     def __str__(self):
         return self.get_name

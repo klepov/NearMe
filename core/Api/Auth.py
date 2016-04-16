@@ -1,10 +1,10 @@
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from vk_api import vk_api, json
+from vk_api import json
 
-from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response
-from core.models import User, Groups, Filter, Location
+from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response, update_in_db_vk
+from core.models import User, Groups, Filter, Location, Wish
 
 
 def get_response_group(vk_token):
@@ -27,7 +27,8 @@ def save_groups(response):
 
 
 class Login(APIView, permissions.BasePermission):
-    def post(self, request):
+    @staticmethod
+    def post(request):
         token = request.POST['token']
         latitude = request.POST['latitude']
         longitude = request.POST['longitude']
@@ -41,11 +42,6 @@ class Login(APIView, permissions.BasePermission):
             # если юзера нет в бд
             # то сохранить его и получить список групп
 
-            # if group is None:
-            #     return Response(status=status.HTTP_403_FORBIDDEN)
-            # user = User(vk_id = id, vk_token=token, groups = group)
-            # user.save()
-
             user = User(vk_id=response['id'],
                         name=response['first_name'],
                         second_name=response['last_name'],
@@ -53,19 +49,22 @@ class Login(APIView, permissions.BasePermission):
                         vk_token=token)
 
             user.groups = save_groups(get_response_group(token))
-            filter = Filter(age_from=16, age_to=21, sex_need=1)
+            filter = Filter(age_from=0, age_to=0, sex_need=0)
             filter.save()
             user.filter = filter
             location = Location(latitude=latitude, longitude=longitude)
             location.save()
+            wish = Wish(wish="")
+            wish.save()
             user.location = location
+            user.wish = wish
             user.save()
 
             # todo add in nearBy
 
-            data = {}
-            data["code"] = "9"
-            return Response(json.dumps(data))
+            data = {"code": 99}
+
+            return Response(data)
 
         else:
             # обновить группы если есть изменения
@@ -81,6 +80,14 @@ class Login(APIView, permissions.BasePermission):
 
                 groups.save()
 
-        return Response(status=status.HTTP_200_OK)
+        update_in_db_vk(user)
 
+        print('sd')
 
+        if user.filter.age_from == 0:
+            data = {'code':99}
+            return response(status=status.HTTP_200_OK,data = data)
+
+        data = {'code':777}
+
+        return Response(status=status.HTTP_200_OK,data=data)
