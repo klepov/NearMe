@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:text="@string/needAge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/vk_black" />
+
+                    <TextView
+                        android:id="@+id/ageNeedChange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/vk_black"
+                        tools:text="22-50" />
+
+
+                </FrameLayout>
+
+
+                <com.appyvet.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/needAgeRangeBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="-26dp"
+                    custom:connectingLineColor="@color/colorPrimary"
+                    custom:pinColor="@color/colorPrimary"
+                    custom:pinRadius="20dp"
+                    custom:rangeBarColor="@color/colorPrimary"
+                    custom:selectorColor="@color/colorPrimary"
+                    custom:tickColor="@color/colorPrimary"
+                    custom:tickEnd="87"
+                    custom:tickInterval="1"
+                    custom:tickStart="14" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="32dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:text="@string/MyAge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/vk_black" />
+
+                    <TextView
+                        android:id="@+id/myAgeChange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/vk_black"
+                        tools:text="22" />
+
+
+                </FrameLayout>
+
+
+                <com.appyvet.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/myAgeRangeBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="-26dp"
+                    custom:connectingLineColor="@color/colorPrimary"
+                    custom:pinColor="@color/colorPrimary"
+                    custom:pinRadius="20dp"
+                    custom:rangeBar="false"
+                    custom:rangeBarColor="@color/colorPrimary"
+                    custom:selectorColor="@color/colorPrimary"
+                    custom:tickColor="@color/colorPrimary"
+                    custom:tickEnd="87"
+                    custom:tickInterval="1"
+                    custom:tickStart="14" />
+
+
+                <TextView
+                    android:id="@+id/needSexTextEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="32dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/vk_black"
+                    tools:text="Девушку" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:text="@string/needSex"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/vk_black" />
+
+
+                    <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+                        android:id="@+id/pinSex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end" />
+
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:layout_gravity="right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/FAB_setting"/>
+</LinearLayout>
+
+

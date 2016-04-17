@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomBarProfile"
+        android:icon="@drawable/ic_face_white_24dp"
+        android:title="@string/MyProfile" />
+        <item
+        android:id="@+id/bottomBarItemHome"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="@string/home" />
+        <item
+        android:id="@+id/bottomBarItemSetting"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/setting" />
+
+</menu>

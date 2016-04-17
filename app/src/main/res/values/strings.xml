@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NearMe</string>
+    <integer name="com_vk_sdk_AppId">5358530</integer>
+    <string name="setting">Настройки</string>
+    <string name="home">Выборка</string>
+    <string name="MyProfile">Профиль</string>
+    <string name="needSex">Я ищу</string>
+    <string name="needAge">Возраст поиска</string>
+    <string name="MyAge">Мой возраст</string>
+    <string name="girls">Девушку</string>
+    <string name="boys">Парня</string>
+
+</resources>
