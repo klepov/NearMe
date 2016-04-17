@@ -6,6 +6,7 @@ import klep.nearme.DI.scopes.UserScope;
 import klep.nearme.VkConnect;
 import klep.nearme.getPeople.GetPeoplePresenter;
 import klep.nearme.login.LoginPresenter;
+import klep.nearme.profilePerson.ProfilePresenter;
 import klep.nearme.settings.SettingPresenter;
 
 /**
@@ -22,4 +23,6 @@ public interface ApiComponent {
     void inject(VkConnect activity);
 
     void inject(SettingPresenter presenter);
+
+    void inject(ProfilePresenter presenter);
 }

@@ -9,18 +9,23 @@ import com.google.gson.annotations.SerializedName;
 import com.hannesdorfmann.parcelableplease.annotation.ParcelablePlease;
 
 
-@ParcelablePlease
+@ParcelablePlease()
 public class Person implements Parcelable {
+
+    public Person() {
+
+    }
 
     @SerializedName("photo_max")
     @Expose
     public String photoId;
+
     @SerializedName("sex")
     @Expose
     public Integer sex;
     @SerializedName("id")
     @Expose
-    public Integer id;
+    public Integer userId;
     @SerializedName("last_name")
     @Expose
     public String lastName;
@@ -35,14 +40,17 @@ public class Person implements Parcelable {
 
     @SerializedName("group")
     @Expose
+
     public Integer group;
 
     @SerializedName("wish")
     @Expose
+
     public String wish;
 
     @SerializedName("age")
     @Expose
+
     public Integer age;
 
 
@@ -93,15 +101,15 @@ public class Person implements Parcelable {
     /**
      * @return The id
      */
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
      * @param id The id
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer id) {
+        this.userId = id;
     }
 
     /**
@@ -153,7 +161,7 @@ public class Person implements Parcelable {
     }
 
     public String getAgeAndName() {
-        return getUserName() + "," + getAge();
+        return getUserName() + ", " + getAge() + " лет";
     }
 
     @Override
@@ -177,4 +185,6 @@ public class Person implements Parcelable {
             return new Person[size];
         }
     };
+
+
 }

@@ -62,6 +62,10 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
         myAgeRangeBar.setOnRangeBarChangeListener(this);
         needAgeRangeBar.setOnRangeBarChangeListener(this);
         pinSex.setOnCheckedChangeListener(this);
+
+        myAgeRangeBar.setRangePinsByValue(18,18);
+        needAgeRangeBar.setRangePinsByValue(14,87);
+//        pinSex.isChecked();
     }
 
     protected int getLayoutRes() {

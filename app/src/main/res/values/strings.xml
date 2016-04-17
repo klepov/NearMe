@@ -2,6 +2,8 @@
     <string name="app_name">NearMe</string>
     <integer name="com_vk_sdk_AppId">5358530</integer>
     <string name="setting">Настройки</string>
+    <string name="call">Ответы</string>
+    <string name="wish">Желания</string>
     <string name="home">Выборка</string>
     <string name="MyProfile">Профиль</string>
     <string name="needSex">Я ищу</string>
@@ -11,5 +13,6 @@
     <string name="boys">Парня</string>
     <string name="profile_image_desc">Изображение человека</string>
     <string name="profile_vk">Профиль Вконтакте</string>
+    <string name="hint_wish">Вводите свое желание</string>
 
 </resources>

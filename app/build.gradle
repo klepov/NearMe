@@ -71,11 +71,6 @@ dependencies {
     }
     compile 'com.roughike:bottom-bar:1.2.4'
 
-    compile('com.mikepenz:materialdrawer:5.1.8@aar') {
-        exclude module: 'appcompat-v7'
-        exclude module: 'recyclerview-v7'
-        transitive = true
-    }
 
     compile 'link.fls:swipestack:0.3.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'

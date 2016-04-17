@@ -1,6 +1,7 @@
 package klep.nearme.Api;
 
 import klep.nearme.model.ErrorCode;
+import klep.nearme.model.Person;
 import klep.nearme.model.Persons;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,6 +29,13 @@ public interface Api {
                                        @Field("age_to") int ageTo,
                                        @Field("my_age") int myAge,
                                        @Field("sex_want") int sexNeed);
+
+
+    @FormUrlEncoded
+    @POST("get_my_profile/")
+    Observable<Person> getMyProfile(@Field("token") String token);
+
+
 
     @FormUrlEncoded
     @POST("update_filter/")

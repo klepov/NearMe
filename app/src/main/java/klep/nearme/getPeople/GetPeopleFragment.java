@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import klep.nearme.R;
 import klep.nearme.common.BaseViewStateFragment;
 import klep.nearme.model.Person;
@@ -98,6 +100,17 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
 
     public class SwipeStackAdapter extends BaseAdapter {
 
+        @Bind(R.id.imagePerson)
+        ImageView image;
+
+        @Bind(R.id.namePerson)
+        TextView namePerson;
+
+        @Bind(R.id.age)
+        TextView age;
+
+        @Bind(R.id.wishPerson)
+        TextView wish;
         private List<Person> persons;
 
         public SwipeStackAdapter(Persons persons) {
@@ -123,22 +136,16 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = getLayoutInflater(savedInstanceState).inflate(R.layout.card, parent, false);
-
+                ButterKnife.bind(this, convertView);
             }
 
-            ImageView image = (ImageView) convertView.findViewById(R.id.imagePerson);
-            TextView namePerson = (TextView) convertView.findViewById(R.id.namePerson);
-            TextView group = (TextView) convertView.findViewById(R.id.group);
-            TextView inst = (TextView) convertView.findViewById(R.id.inst);
-            TextView wish = (TextView) convertView.findViewById(R.id.wishPerson);
 
             Picasso.with(getContext())
                     .load(persons.get(position).getPhotoId())
                     .into(image);
 
             namePerson.setText(persons.get(position).getUserName());
-            group.setText("" + persons.get(position).getGroup());
-            inst.setText("" + persons.get(position).getInterest());
+            age.setText("" + persons.get(position).getAge());
             wish.setText("" + persons.get(position).getWish());
 
 

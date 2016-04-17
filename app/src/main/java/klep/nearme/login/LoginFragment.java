@@ -33,6 +33,12 @@ public class LoginFragment extends BaseViewStateFragment<LoginView, LoginPresent
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public void showLoginSuccessful() {
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();

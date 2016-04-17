@@ -1,7 +1,6 @@
 package klep.nearme.getPeople;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
@@ -10,6 +9,7 @@ import javax.inject.Inject;
 import klep.nearme.Api.Api;
 import klep.nearme.OverrideApp;
 import klep.nearme.Utils.Const;
+import klep.nearme.model.Person;
 import klep.nearme.model.Persons;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -41,7 +41,7 @@ public class GetPeoplePresenter extends MvpBasePresenter<GetPeopleView> {
         subscriber = new Subscriber<Persons>() {
             @Override
             public void onCompleted() {
-                Log.d("allahakbar", "viiiii");
+
             }
 
             @Override
@@ -51,6 +51,7 @@ public class GetPeoplePresenter extends MvpBasePresenter<GetPeopleView> {
 
             @Override
             public void onNext(Persons items) {
+                Person lol = (Person) items.getItems().get(0);
                 getView().showPeople(items);
             }
         };
@@ -65,6 +66,7 @@ public class GetPeoplePresenter extends MvpBasePresenter<GetPeopleView> {
                     .subscribe(subscriber);
         }
     }
+
 
     private void cancelSubscribe() {
         if (subscriber != null && !subscriber.isUnsubscribed()) {

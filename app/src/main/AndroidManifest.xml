@@ -9,6 +9,7 @@
 
     <application
 
+
         android:name=".OverrideApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".engineApplication.MainActivity" />
+        <activity
+            android:name=".engineApplication.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".login.LoginActivity" />
 
         <activity android:name=".VkConnect">

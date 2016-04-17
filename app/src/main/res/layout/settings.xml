@@ -64,7 +64,8 @@
                     custom:tickColor="@color/colorPrimary"
                     custom:tickEnd="87"
                     custom:tickInterval="1"
-                    custom:tickStart="14" />
+                    custom:tickStart="14"
+                    />
 
 
                 <FrameLayout
@@ -122,7 +123,7 @@
                     android:layout_marginTop="32dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/vk_black"
-                    tools:text="Девушку" />
+                    android:text="Парня" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -149,6 +150,13 @@
 
                 </FrameLayout>
 
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_wish"
+                    android:id="@+id/wishUserNeed"
+                    android:layout_margin="@dimen/classic16dp"
+                    android:maxLength="60"/>
 
             </LinearLayout>
 

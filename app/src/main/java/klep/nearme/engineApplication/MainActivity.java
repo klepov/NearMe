@@ -4,47 +4,43 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.View;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import klep.nearme.R;
+import klep.nearme.common.BaseActivity;
 import klep.nearme.getPeople.GetPeopleFragment;
+import klep.nearme.profilePerson.ProfileFragment;
 import klep.nearme.settings.SettingsActivity;
 
 /**
  * Created by klep.io on 25.03.16.
  */
-public class MainActivity extends FragmentActivity
-        implements EngineView, Drawer.OnDrawerItemClickListener, OnMenuTabClickListener {
+public class MainActivity extends BaseActivity
+        implements EngineView, OnMenuTabClickListener, Toolbar.OnMenuItemClickListener {
 
     private BottomBar bottomBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main_activity);
-        bottomBar = BottomBar.attach(this, savedInstanceState);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.setting_toolbar);
+        setSupportActionBar(toolbar);
 
-        Drawer result = new DrawerBuilder()
-                .withActivity(this)
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.setting)
-                )
-                .withOnDrawerItemClickListener(this)
-                .build();
+        if (toolbar != null) {
+            toolbar.setOnMenuItemClickListener(this);
+        }
+
+        bottomBar = BottomBar.attach(this, savedInstanceState);
 
 
         bottomBar.setItemsFromMenu(R.menu.bottom_menu, this);
-
         bottomBar.setDefaultTabPosition(1);
 
     }
@@ -60,25 +56,38 @@ public class MainActivity extends FragmentActivity
 
     }
 
-    @Override
-    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-
-        switch (position){
-            case 0:
-                startActivity(new Intent(this, SettingsActivity.class));
-        }
-
-        return false;
-    }
 
     @Override
     public void onMenuTabSelected(@IdRes int menuItemId) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentPlace, new GetPeopleFragment())
-                .commit();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (menuItemId) {
+            case R.id.bottomBarItemHome:
+                transaction.replace(R.id.fragmentPlace, new GetPeopleFragment())
+                        .commit();
+                break;
+
+            case R.id.bottomBarProfile:
+                transaction.replace(R.id.fragmentPlace, new ProfileFragment())
+                        .commit();
+                break;
+        }
+
     }
 
     @Override
     public void onMenuTabReSelected(@IdRes int menuItemId) {
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_setting, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.setting)
+            startActivity(new Intent(this, SettingsActivity.class));
+        return true;
     }
 }
