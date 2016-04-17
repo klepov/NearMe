@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from vk_api import json
 
-from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response, update_in_db_vk
+from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response, update_in_db_vk, get_fullpick
 from core.models import User, Groups, Filter, Location, Wish
 
 
@@ -59,8 +59,7 @@ class Login(APIView, permissions.BasePermission):
             user.location = location
             user.wish = wish
             user.save()
-
-            # todo add in nearBy
+            get_fullpick(user)
 
             data = {"code": 99}
 

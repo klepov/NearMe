@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from core.Api import Utils
-from core.Api.Utils import get_user_vk_response, update_in_db_vk
+from core.Api.Utils import get_user_vk_response, update_in_db_vk, inflate_usermodel
 from core.models import User
 
 
@@ -32,7 +32,8 @@ class Near_people(APIView):
             age_to = filter.age_to
             sex = filter.sex_need
 
-        sql_quer = "age <= {0} OR age <= {1} AND sex = {2}".format(age_from, age_to, sex)
+        sql_quer = "age <= {0} OR age <= {1}".format(age_from, age_to)
+        # sql_quer = "age <= {0} OR age <= {1} AND sex = {2}".format(age_from, age_to, sex)
         get_from_db = User.objects.extra(where=[sql_quer])
 
 
@@ -43,20 +44,25 @@ class Near_people(APIView):
             self.list_from_db.append(user.vk_id)
 
         for user_vk in response['items']:
-            print(user)
-            user_vk['photo_max'] = 'https://pp.vk.me/c629104/v629104372/3c3f7/91DesV4Y--U.jpg'
-            user_vk['interest'] = '5'
-            user_vk['group'] = '10'
-            self.found.append(user_vk)
+            # self.found.append(user_vk)
 
             result = user_vk['id'] in self.list_from_db
+
             if result:
                 self.found.append(user_vk)
+
+
+        self_result = inflate_usermodel(user, self.found)
+
+        # for user in self.found:
+            # user_id = user
+            # req = vk.method('photos.get', {'user_ids': user_id, 'album_id': 'profile', 'rev': 1, 'photo_sizes': 1})
+            # main_photo = req['items'][0]['sizes'][-1]['src']
 
         send_people = {}
 
         send_people['count'] = len(self.found)
-        send_people['items'] = self.found
+        send_people['items'] = self_result
 
 
         return Response(send_people,status=status.HTTP_200_OK)

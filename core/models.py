@@ -39,6 +39,10 @@ class Filter(models.Model):
     age_to = models.IntegerField()
     sex_need = models.IntegerField()
 
+
+    # sex - 1 -- girls
+    # sex - 2 -- boys
+
     # def __str__(self):
     #     return "фильтр для " + self.user.get_name
 
@@ -53,9 +57,20 @@ class Wish(models.Model):
         return self.wish
 
 
+class ExecuteWish(models.Model):
+    # todo переделать
+    items = models.TextField()
+
+    @property
+    def get_count(self):
+        return len(self.items)
+
+
+
 class User(models.Model):
     vk_token = models.CharField(max_length=255)
     vk_id = models.IntegerField()
+    photo_max = models.CharField(max_length=600,blank=True)
     name = models.CharField(max_length=100,blank=True)
     second_name = models.CharField(max_length=100,blank=True)
     age = models.IntegerField(null=True)
@@ -64,6 +79,7 @@ class User(models.Model):
     filter = models.OneToOneField(Filter)
     location = models.OneToOneField(Location)
     wish = models.OneToOneField(Wish)
+    executeWish = models.OneToOneField(ExecuteWish)
 
     black_list = models.TextField(blank=True)
 

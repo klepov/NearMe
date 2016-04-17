@@ -44,6 +44,48 @@ def update_in_db_vk(user):
                                     longitude=longitude,
                                     timeout=timeout,
                                     radius=radius,
-                                    fields="sex, photo_max")
+                                    fields="sex")
 
     return response
+
+def inflate_usermodel(user, users):
+    auth = get_vk_auth(user.vk_token)
+
+    list_override = []
+
+    for user_id in users:
+        # todo сделать нормальную надувалку модели
+        user_from_db = User.objects.get(vk_id=user_id['id'])
+
+        id = user_id['id']
+        req = auth.photos.get(owner_id=  id, album_id="profile", rev= 1, photo_sizes=1)
+        main_photo = req['items'][0]['sizes'][-1]['src']
+        user_id['photo_max'] = main_photo
+        user_id['wish'] = user_from_db.get_wish.wish
+        user_id['age'] = user_from_db.age
+
+        list_override.append(user_id)
+
+    return list_override
+
+def get_fullpick(user):
+    auth = get_vk_auth(user.vk_token)
+
+    id = user.id
+    req = auth.photos.get(users_id=id, album_id="profile", rev=1, photo_sizes=1)
+    main_photo = req['items'][0]['sizes'][-1]['src']
+    user.photo_max = main_photo
+    user.save()
+
+def infalte_specific_usermodel(user):
+
+    data = {}
+    data['id'] = user.vk_id
+    data['photo_max'] = user.photo_max
+    data['first_name'] = user.name
+    data['last_name'] = user.second_name
+    data['age'] = user.age
+    data['sex'] = user.sex
+    data['wish'] = user.wish.wish
+
+    return data
