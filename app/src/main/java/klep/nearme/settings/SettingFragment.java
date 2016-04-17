@@ -140,7 +140,7 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
     @Override
     public void onCheckedChanged(boolean isPush) {
         needSexTextEdit.setText(isPush ? girls : boys);
-        sex = Integer.parseInt(String.valueOf(isPush ? 1 : 0));
+        sex = Integer.parseInt(String.valueOf(isPush ? 1 : 2));
     }
 
 

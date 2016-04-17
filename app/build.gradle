@@ -78,6 +78,11 @@ dependencies {
     }
 
     compile 'link.fls:swipestack:0.3.0'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+
+
+    compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.2'
+    apt 'com.hannesdorfmann.parcelableplease:processor:1.0.2'
 
 
 }

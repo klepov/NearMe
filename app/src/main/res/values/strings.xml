@@ -9,5 +9,7 @@
     <string name="MyAge">Мой возраст</string>
     <string name="girls">Девушку</string>
     <string name="boys">Парня</string>
+    <string name="profile_image_desc">Изображение человека</string>
+    <string name="profile_vk">Профиль Вконтакте</string>
 
 </resources>

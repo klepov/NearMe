@@ -1,39 +1,49 @@
 
 package klep.nearme.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.hannesdorfmann.parcelableplease.annotation.ParcelablePlease;
 
-public class Person {
+
+@ParcelablePlease
+public class Person implements Parcelable {
 
     @SerializedName("photo_max")
     @Expose
-    private String photoId;
+    public String photoId;
     @SerializedName("sex")
     @Expose
-    private Integer sex;
+    public Integer sex;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    public Integer id;
     @SerializedName("last_name")
     @Expose
-    private String lastName;
+    public String lastName;
 
     @SerializedName("first_name")
     @Expose
-    private String firstName;
+    public String firstName;
 
     @SerializedName("interest")
     @Expose
-    private Integer interest;
+    public Integer interest;
 
     @SerializedName("group")
     @Expose
-    private Integer group;
+    public Integer group;
 
     @SerializedName("wish")
     @Expose
-    private String wish;
+    public String wish;
+
+    @SerializedName("age")
+    @Expose
+    public Integer age;
 
 
     public Integer getInterest() {
@@ -133,4 +143,38 @@ public class Person {
     public void setWish(String wish) {
         this.wish = wish;
     }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getAgeAndName() {
+        return getUserName() + "," + getAge();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        PersonParcelablePlease.writeToParcel(this, dest, flags);
+    }
+
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        public Person createFromParcel(Parcel source) {
+            Person target = new Person();
+            PersonParcelablePlease.readFromParcel(target, source);
+            return target;
+        }
+
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
 }

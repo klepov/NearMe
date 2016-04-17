@@ -6,4 +6,8 @@ package klep.nearme.Utils;
 public class Const {
     public static final String IP = "http://176.56.50.175:1488/core/api/";
     public static final String TOKEN = "TOKEN";
+
+    public static final String USER_BUNDLE = "USER_BUNDLE";
+
+
 }
