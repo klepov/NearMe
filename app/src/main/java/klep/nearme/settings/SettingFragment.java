@@ -60,6 +60,7 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
 
     View view;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,20 +106,20 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
 
     @Override
     public void showSettingForm() {
-        SettingViewState vs = (SettingViewState) viewState;
-        vs.setStateShowSettingForm();
+//        SettingViewState vs = (SettingViewState) viewState;
+//        vs.setStateShowSettingForm();
     }
 
     @Override
     public void showLoading() {
-        SettingViewState vs = (SettingViewState) viewState;
-        vs.setStateShowLoading();
+//        SettingViewState vs = (SettingViewState) viewState;
+//        vs.setStateShowLoading();
     }
 
     @Override
     public void showError() {
-        SettingViewState vs = (SettingViewState) viewState;
-        vs.setStateShowError();
+//        SettingViewState vs = (SettingViewState) viewState;
+//        vs.setStateShowError();
 
     }
 

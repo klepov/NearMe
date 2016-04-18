@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
         super.onViewCreated(view, savedInstanceState);
         swipeStack.setListener(this);
         this.view = view;
+
     }
 
     @Nullable
@@ -57,6 +59,9 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(getLayoutRes(), container, false);
         this.savedInstanceState = savedInstanceState;
+        getActivity().getActionBar();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.search_people);
+
         return v;
     }
 
@@ -149,8 +154,6 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
         @Bind(R.id.namePerson)
         TextView namePerson;
 
-        @Bind(R.id.age)
-        TextView age;
 
         @Bind(R.id.wishPerson)
         TextView wish;
@@ -187,10 +190,8 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
                     .load(persons.get(position).getPhotoId())
                     .into(image);
 
-            namePerson.setText(persons.get(position).getUserName());
-            age.setText("" + persons.get(position).getAge());
+            namePerson.setText(persons.get(position).getAgeAndName());
             wish.setText("" + persons.get(position).getWish());
-
 
             return convertView;
         }

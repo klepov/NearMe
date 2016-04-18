@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/bottomBarItemPersonsList"
-        android:icon="@drawable/ic_settings_white_24dp"
+        android:icon="@drawable/ic_person_add_white_24dp"
         android:title="@string/call" />
 
 </menu>

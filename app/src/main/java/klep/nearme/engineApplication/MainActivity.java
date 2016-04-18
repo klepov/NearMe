@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +47,11 @@ public class MainActivity extends BaseActivity
 
     }
 
+    @Nullable
+    @Override
+    public ActionBar getSupportActionBar() {
+        return super.getSupportActionBar();
+    }
 
     @Override
     public void showLoading() {

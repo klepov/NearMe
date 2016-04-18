@@ -1,6 +1,7 @@
 package klep.nearme.profilePerson;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +12,6 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import klep.nearme.R;
-import klep.nearme.Utils.Const;
 import klep.nearme.common.BaseViewStateFragment;
 import klep.nearme.model.Person;
 
@@ -33,6 +33,15 @@ public class ProfileFragment extends BaseViewStateFragment<ProfileView, ProfileP
     @Bind(R.id.openVk)
     Button openVK;
 
+    public static ProfileFragment getInstance(Bundle bundle) {
+
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +58,18 @@ public class ProfileFragment extends BaseViewStateFragment<ProfileView, ProfileP
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.profile);
 
         try {
-            Person person = getArguments().getParcelable(Const.USER_BUNDLE);
+            Person person = getArguments().getParcelable("Person");
             getPerson(person);
         } catch (NullPointerException e) {
             presenter.getMyProfile();
 
+
         }
-
-
     }
+
 
     @Override
     public ProfilePresenter createPresenter() {

@@ -34,40 +34,31 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
             tools:text="Кофе хочу" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <!--<TextView-->
-                <!--android:id="@+id/inst"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:drawableLeft="@drawable/ic_favorite_black_18dp"-->
-                <!--android:paddingRight="32dp"-->
-                <!--tools:text="12" />-->
+            <!--android:id="@+id/inst"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableLeft="@drawable/ic_favorite_black_18dp"-->
+            <!--android:paddingRight="32dp"-->
+            <!--tools:text="12" />-->
 
             <!--<TextView-->
-                <!--android:id="@+id/group"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:drawableLeft="@drawable/ic_group_black_18dp"-->
-                <!--android:gravity="right"-->
-                <!--tools:text="0" />-->
-
-            <TextView
-                android:id="@+id/age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_cake_black_18dp"
-                android:gravity="right"
-                android:paddingLeft="32dp"
-                tools:text="18" />
+            <!--android:id="@+id/group"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableLeft="@drawable/ic_group_black_18dp"-->
+            <!--android:gravity="right"-->
+            <!--tools:text="0" />-->
 
 
         </LinearLayout>
@@ -77,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
+            android:id="@+id/prev_vk_page"
             android:text="Страница ВК" />
     </LinearLayout>
 

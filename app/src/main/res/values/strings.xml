@@ -18,5 +18,9 @@
     <string name="wishNeed">Желание обязательно</string>
     <string name="wish_Added_In_List">Добавлено в список исполнений</string>
     <string name="add_in_black_list">Добавлено в черный список</string>
+    <string name="back">Назад</string>
+    <string name="wishExecute">Исполнители</string>
+    <string name="search_people">Поиск людей</string>
+    <string name="profile">Профиль</string>
 
 </resources>

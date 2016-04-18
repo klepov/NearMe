@@ -23,6 +23,10 @@
 
         <activity android:name=".login.LoginActivity" />
 
+        <activity
+            android:name=".profilePerson.ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".VkConnect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
