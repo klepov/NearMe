@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import klep.nearme.Api.Api;
 import klep.nearme.OverrideApp;
 import klep.nearme.Utils.Const;
+import klep.nearme.model.ErrorCode;
 import klep.nearme.model.Person;
 import klep.nearme.model.Persons;
 import rx.Subscriber;
@@ -20,6 +21,7 @@ import rx.schedulers.Schedulers;
  */
 public class GetPeoplePresenter extends MvpBasePresenter<GetPeopleView> {
     Subscriber<Persons> subscriber;
+    Subscriber<ErrorCode> wishSubscribe;
     @Inject
     Api api;
 
@@ -85,5 +87,63 @@ public class GetPeoplePresenter extends MvpBasePresenter<GetPeopleView> {
     @Override
     public void attachView(GetPeopleView view) {
         super.attachView(view);
+    }
+
+    public void doneWish(Integer userId) {
+        String token = preferences.getString(Const.TOKEN, null);
+
+        wishSubscribe = new Subscriber<ErrorCode>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ErrorCode code) {
+                if (code.getCode() == 777) getView().showPersonAddInExecuteWish();
+            }
+        };
+
+        if (token != null) {
+            api.executeWish(token, userId)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(wishSubscribe);
+        }
+    }
+
+    public void addBlackList(Integer userId) {
+
+        String token = preferences.getString(Const.TOKEN, null);
+
+        wishSubscribe = new Subscriber<ErrorCode>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ErrorCode code) {
+                if (code.getCode() == 777) getView().showPersonAddInBlackList();
+            }
+        };
+
+        if (token != null) {
+            api.addBlackList(token, userId)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(wishSubscribe);
+        }
+
     }
 }

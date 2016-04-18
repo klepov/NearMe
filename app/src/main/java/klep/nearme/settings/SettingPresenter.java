@@ -52,7 +52,7 @@ public class SettingPresenter extends MvpBasePresenter<SettingView> {
 
             @Override
             public void onNext(ErrorCode code) {
-                if (code.getCode() == 777){
+                if (code.getCode() == 777) {
                     getView().showSuccess();
                 }
             }
@@ -65,7 +65,8 @@ public class SettingPresenter extends MvpBasePresenter<SettingView> {
                     request.getAgeFrom(),
                     request.getAgeTo(),
                     request.getMyAge(),
-                    request.getSexNeed())
+                    request.getSexNeed(),
+                    request.getWish())
 
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())

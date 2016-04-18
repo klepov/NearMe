@@ -13,7 +13,7 @@
         android:title="@string/wish" />
 
     <item
-        android:id="@+id/bottomBarItemSetting"
+        android:id="@+id/bottomBarItemPersonsList"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/call" />
 

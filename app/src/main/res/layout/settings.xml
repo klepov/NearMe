@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -64,8 +65,7 @@
                     custom:tickColor="@color/colorPrimary"
                     custom:tickEnd="87"
                     custom:tickInterval="1"
-                    custom:tickStart="14"
-                    />
+                    custom:tickStart="14" />
 
 
                 <FrameLayout
@@ -121,9 +121,9 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="32dp"
+                    android:text="@string/boys"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/vk_black"
-                    android:text="Парня" />
+                    android:textColor="@color/vk_black" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -150,20 +150,39 @@
 
                 </FrameLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@string/wish"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/vk_black" />
+
                 <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/wishUserNeed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/classic16dp"
+                    android:layout_marginRight="@dimen/classic16dp"
+                    android:layout_marginTop="16dp"
                     android:hint="@string/hint_wish"
-                    android:id="@+id/wishUserNeed"
-                    android:layout_margin="@dimen/classic16dp"
-                    android:maxLength="60"/>
+                    app:met_maxCharacters="30"
+                    app:met_minCharacters="0" />
 
             </LinearLayout>
 
+
         </RelativeLayout>
+
+
     </ScrollView>
 
+
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/FAB_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -171,8 +190,7 @@
         android:layout_alignParentStart="false"
         android:layout_gravity="right"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/FAB_setting"/>
+        android:layout_marginRight="16dp" />
 </LinearLayout>
 
 

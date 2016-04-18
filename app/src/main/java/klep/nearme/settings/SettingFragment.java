@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.appyvet.rangebar.RangeBar;
 import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.Bind;
 import butterknife.BindString;
@@ -35,6 +38,9 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
     @Bind(R.id.ageNeedChange)
     TextView ageNeedChangeTextEdit;
 
+    @Bind(R.id.wishUserNeed)
+    MaterialEditText wishUserNeedTextEdit;
+
     @Bind(R.id.myAgeChange)
     TextView myAgeChangeTextEdit;
 
@@ -47,7 +53,12 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
     @BindString(R.string.boys)
     String boys;
 
+    @BindString(R.string.wishNeed)
+    String wishNeed;
+
     int sex;
+
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,8 +74,11 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
         needAgeRangeBar.setOnRangeBarChangeListener(this);
         pinSex.setOnCheckedChangeListener(this);
 
-        myAgeRangeBar.setRangePinsByValue(18,18);
-        needAgeRangeBar.setRangePinsByValue(14,87);
+        sex = 2;
+
+        myAgeRangeBar.setRangePinsByValue(18, 18);
+        needAgeRangeBar.setRangePinsByValue(14, 87);
+        this.view = view;
 //        pinSex.isChecked();
     }
 
@@ -116,12 +130,18 @@ public class SettingFragment extends BaseViewStateFragment<SettingView, SettingP
 
     @OnClick(R.id.FAB_setting)
     public void click() {
+
+        if (TextUtils.isEmpty(wishUserNeedTextEdit.getText().toString())) {
+            Snackbar.make(view, wishNeed, Snackbar.LENGTH_SHORT).show();
+            return;
+        }
         String[] ageNeed = ageNeedChangeTextEdit.getText().toString().split(" - ");
         int ageFrom = Integer.parseInt(ageNeed[0]);
         int ageTo = Integer.parseInt(ageNeed[1]);
         int myAge = Integer.parseInt(myAgeChangeTextEdit.getText().toString());
+        String wish = wishUserNeedTextEdit.getText().toString();
 
-        presenter.sendSetting(new SettingsRequest(ageFrom, ageTo, myAge, sex));
+        presenter.sendSetting(new SettingsRequest(ageFrom, ageTo, myAge, sex, wish));
     }
 
 

@@ -5,6 +5,8 @@ import klep.nearme.DI.module.ApiModule;
 import klep.nearme.DI.scopes.UserScope;
 import klep.nearme.VkConnect;
 import klep.nearme.getPeople.GetPeoplePresenter;
+import klep.nearme.listExecute.ListExecutePresenter;
+import klep.nearme.listExecute.ListExecuteView;
 import klep.nearme.login.LoginPresenter;
 import klep.nearme.profilePerson.ProfilePresenter;
 import klep.nearme.settings.SettingPresenter;
@@ -25,4 +27,6 @@ public interface ApiComponent {
     void inject(SettingPresenter presenter);
 
     void inject(ProfilePresenter presenter);
+
+    void inject(ListExecutePresenter presenter);
 }

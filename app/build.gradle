@@ -40,6 +40,9 @@ dependencies {
     compile project(':vksdk_library')
     compile 'com.google.android.gms:play-services-location:8.4.0'
 
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
+
 //    DI
     apt 'com.google.dagger:dagger-compiler:2.1'
     compile 'com.google.dagger:dagger:2.1'
@@ -79,5 +82,8 @@ dependencies {
     compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.2'
     apt 'com.hannesdorfmann.parcelableplease:processor:1.0.2'
 
+    compile('com.mikepenz:fastadapter:1.4.4@aar') {
+        transitive = true
+    }
 
 }

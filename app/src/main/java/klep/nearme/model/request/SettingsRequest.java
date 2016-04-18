@@ -8,17 +8,23 @@ public class SettingsRequest {
     private int ageTo;
     private int myAge;
     private int sexNeed;
+    private String wish;
 
-    public SettingsRequest(int ageFrom, int ageTo, int myAge, int sexNeed) {
+    public SettingsRequest(int ageFrom, int ageTo, int myAge, int sexNeed, String wish) {
         this.ageFrom = ageFrom;
         this.ageTo = ageTo;
         this.myAge = myAge;
         this.sexNeed = sexNeed;
+        this.wish = wish;
     }
 
 
     public int getAgeFrom() {
         return ageFrom;
+    }
+
+    public String getWish() {
+        return wish;
     }
 
     public int getAgeTo() {

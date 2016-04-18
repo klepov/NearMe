@@ -28,19 +28,8 @@ public interface Api {
                                        @Field("age_from") int ageFrom,
                                        @Field("age_to") int ageTo,
                                        @Field("my_age") int myAge,
-                                       @Field("sex_want") int sexNeed);
-
-
-    @FormUrlEncoded
-    @POST("get_my_profile/")
-    Observable<Person> getMyProfile(@Field("token") String token);
-
-
-
-    @FormUrlEncoded
-    @POST("update_filter/")
-    Observable<Object> updateAge(@Field("token") String token,
-                                 @Field("age") int age);
+                                       @Field("sex_want") int sexNeed,
+                                       @Field("wish") String wish);
 
 
     @FormUrlEncoded
@@ -49,5 +38,25 @@ public interface Api {
                                       @Field("latitude") float latitude,
                                       @Field("longitude") float longitude);
 
+
+
+    @FormUrlEncoded
+    @POST("get_my_profile/")
+    Observable<Person> getMyProfile(@Field("token") String token);
+
+
+    @FormUrlEncoded
+    @POST("wish/execute_wish/")
+    Observable<ErrorCode> executeWish(@Field("token") String token,
+                                      @Field("user_id") int idVk);
+
+    @FormUrlEncoded
+    @POST("wish/black_list/")
+    Observable<ErrorCode> addBlackList(@Field("token") String token,
+                                       @Field("user_id") int idVk);
+
+    @FormUrlEncoded
+    @POST("get_my_execute_wish/")
+    Observable<Persons> getExecutWishList(@Field("token") String token);
 
 }

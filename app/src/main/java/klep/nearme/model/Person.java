@@ -164,6 +164,9 @@ public class Person implements Parcelable {
         return getUserName() + ", " + getAge() + " лет";
     }
 
+    public String getAgeFormat(){
+        return getAge() + " лет";
+    }
     @Override
     public int describeContents() {
         return 0;

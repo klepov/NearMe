@@ -3,6 +3,7 @@ package klep.nearme.getPeople;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,13 @@ import link.fls.swipestack.SwipeStack;
  * Created by klep.io on 26.03.16.
  */
 public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetPeoplePresenter>
-        implements GetPeopleView {
+        implements GetPeopleView, SwipeStack.SwipeStackListener {
 
-    private SwipeStack swipeStack;
+    @Bind(R.id.swipeStack)
+    SwipeStack swipeStack;
+
     private SwipeStackAdapter mAdapter;
-
+    private View view;
 
     Bundle savedInstanceState;
 
@@ -42,12 +45,18 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
 
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        swipeStack.setListener(this);
+        this.view = view;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(getLayoutRes(), container, false);
         this.savedInstanceState = savedInstanceState;
-        swipeStack = (SwipeStack) v.findViewById(R.id.swipeStack);
         return v;
     }
 
@@ -92,11 +101,45 @@ public class GetPeopleFragment extends BaseViewStateFragment<GetPeopleView, GetP
 
     }
 
+
     @Override
     public GetPeoplePresenter createPresenter() {
         return new GetPeoplePresenter();
     }
 
+    @Override
+    public void onViewSwipedToLeft(int position) {
+        Person person = (Person) mAdapter.getItem(position);
+        presenter.addBlackList(person.getUserId());
+    }
+
+    @Override
+    public void onViewSwipedToRight(int position) {
+
+        Person person = (Person) mAdapter.getItem(position);
+        presenter.doneWish(person.getUserId());
+// mAdapter.getItem(position));
+    }
+
+    @Override
+    public void onStackEmpty() {
+
+    }
+
+//    ----------Right-Left-swipe
+
+    @Override
+    public void showPersonAddInExecuteWish() {
+        Snackbar.make(view, R.string.wish_Added_In_List, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showPersonAddInBlackList() {
+        Snackbar.make(view, R.string.add_in_black_list, Snackbar.LENGTH_SHORT).show();
+
+    }
+
+// -------------END
 
     public class SwipeStackAdapter extends BaseAdapter {
 

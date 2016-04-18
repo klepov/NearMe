@@ -15,6 +15,7 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 import klep.nearme.R;
 import klep.nearme.common.BaseActivity;
 import klep.nearme.getPeople.GetPeopleFragment;
+import klep.nearme.listExecute.ListExecuteFragment;
 import klep.nearme.profilePerson.ProfileFragment;
 import klep.nearme.settings.SettingsActivity;
 
@@ -68,6 +69,11 @@ public class MainActivity extends BaseActivity
 
             case R.id.bottomBarProfile:
                 transaction.replace(R.id.fragmentPlace, new ProfileFragment())
+                        .commit();
+                break;
+
+            case R.id.bottomBarItemPersonsList:
+                transaction.replace(R.id.fragmentPlace, new ListExecuteFragment())
                         .commit();
                 break;
         }

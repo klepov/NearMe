@@ -12,4 +12,7 @@ public interface GetPeopleView extends MvpView {
     void showLoading();
     void showError(int error);
     void showPeople(Persons person);
+
+    void showPersonAddInExecuteWish();
+    void showPersonAddInBlackList();
 }
