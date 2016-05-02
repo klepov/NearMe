@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'rest_framework',
     'geoposition',
+    'gcm',
 
 ]
 
@@ -124,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GCM_APIKEY = "AIzaSyBIcU3wU-voDRYMeBgqiTje6NsyRu89w00"

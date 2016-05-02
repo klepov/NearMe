@@ -32,8 +32,8 @@ class Near_people(APIView):
             age_to = filter.age_to
             sex = filter.sex_need
 
-        sql_quer = "age <= {0} OR age <= {1}".format(age_from, age_to)
-        # sql_quer = "age <= {0} OR age <= {1} AND sex = {2}".format(age_from, age_to, sex)
+        # sql_quer = "age <= {0} OR age <= {1}".format(age_from, age_to)
+        sql_quer = "age <= {0} OR age <= {1} AND sex = {2}".format(age_from, age_to, sex)
         get_from_db = User.objects.extra(where=[sql_quer])
 
 
@@ -54,10 +54,6 @@ class Near_people(APIView):
 
         self_result = inflate_usermodel(user, self.found)
 
-        # for user in self.found:
-            # user_id = user
-            # req = vk.method('photos.get', {'user_ids': user_id, 'album_id': 'profile', 'rev': 1, 'photo_sizes': 1})
-            # main_photo = req['items'][0]['sizes'][-1]['src']
 
         send_people = {}
 

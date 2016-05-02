@@ -4,7 +4,8 @@ from rest_framework.views import APIView
 from vk_api import json
 
 from core.Api.Utils import get_user, get_vk_auth, get_user_vk_response, update_in_db_vk, get_fullpick
-from core.models import User, Groups, Filter, Location, Wish
+from core.models import User,\
+    Groups, Filter, Location, Wish, ExecuteWish, Who_execute_wish,Black_list
 
 
 def get_response_group(vk_token):
@@ -24,6 +25,11 @@ def save_groups(response):
     groups = Groups(count=count, items=items)
     groups.save()
     return groups
+
+class In_shk(APIView):
+    @staticmethod
+    def post(request):
+        print("asd")
 
 
 class Login(APIView, permissions.BasePermission):
@@ -56,9 +62,24 @@ class Login(APIView, permissions.BasePermission):
             location.save()
             wish = Wish(wish="")
             wish.save()
+
             user.location = location
             user.wish = wish
+
+            execute_wish = ExecuteWish(items="")
+            execute_wish.save()
+            user.executeWish = execute_wish
+
+            who_execute_wish = Who_execute_wish(items="")
+            who_execute_wish.save()
+            user.who_execute_Wish = who_execute_wish
+
+            black_list = Black_list(items="")
+            black_list.save()
+            user.black_list = black_list
+
             user.save()
+
             get_fullpick(user)
 
             data = {"code": 99}

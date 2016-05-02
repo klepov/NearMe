@@ -66,6 +66,25 @@ class ExecuteWish(models.Model):
         return len(self.items)
 
 
+class Black_list(models.Model):
+    # todo переделать
+    items = models.TextField()
+
+    @property
+    def get_count(self):
+        return len(self.items)
+
+
+
+class Who_execute_wish(models.Model):
+    # todo переделать
+    items = models.TextField()
+
+    @property
+    def get_count(self):
+        return len(self.items)
+
+
 
 class User(models.Model):
     vk_token = models.CharField(max_length=255)
@@ -80,8 +99,9 @@ class User(models.Model):
     location = models.OneToOneField(Location)
     wish = models.OneToOneField(Wish)
     executeWish = models.OneToOneField(ExecuteWish)
+    who_execute_Wish = models.OneToOneField(Who_execute_wish)
+    black_list = models.OneToOneField(Black_list)
 
-    black_list = models.TextField(blank=True)
 
 
     @property
@@ -103,6 +123,16 @@ class User(models.Model):
     @property
     def get_wish(self):
         return self.wish
+
+    @property
+    def get_wish_execute(self):
+        return self.executeWish
+    @property
+    def get_who_execute_wish(self):
+        return self.who_execute_Wish
+    @property
+    def get_black_list(self):
+        return self.black_list
 
     def __str__(self):
         return self.get_name

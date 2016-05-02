@@ -43,7 +43,7 @@ def update_in_db_vk(user):
     response = auth.users.getNearby(latitude=latitude,
                                     longitude=longitude,
                                     timeout=timeout,
-                                    radius=radius,
+                                    radius=4,
                                     fields="sex")
 
     return response
